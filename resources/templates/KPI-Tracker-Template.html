@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KPI Tracker | Highland Longevity Clinic</title>
+    <style>
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.header-logo {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #2E6BA6;
+}
+
+.header-logo img {
+    max-width: 180px;
+    height: auto;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: 600;
+    color: #2E6BA6;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 12pt;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 16pt;
+    font-weight: 600;
+    color: #1A4A73;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #E8F1F8;
+    padding-bottom: 8px;
+}
+
+h3 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #2E6BA6;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+th {
+    background-color: #2E6BA6;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+tr:nth-child(even) { background-color: #f9f9f9; }
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 10pt;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2E6BA6;
+}
+
+.callout {
+    background-color: #E8F1F8;
+    border-left: 4px solid #2E6BA6;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.metric-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.metric-title {
+    font-weight: bold;
+    color: #1A4A73;
+}
+
+.metric-target {
+    background: #2E6BA6;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 10pt;
+}
+
+.status-good { background: #28a745; }
+.status-warning { background: #ffc107; color: #333; }
+.status-alert { background: #dc3545; }
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.week-box {
+    text-align: center;
+    padding: 5px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.week-label {
+    font-size: 9pt;
+    color: #666;
+}
+
+.summary-box {
+    background: linear-gradient(135deg, #2E6BA6, #1A4A73);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    text-align: center;
+}
+
+.summary-item {
+    padding: 10px;
+}
+
+.summary-value {
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+.summary-label {
+    font-size: 10pt;
+    opacity: 0.9;
+}
+
+.footer {
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 9pt;
+    color: #999;
+    text-align: center;
+}
+
+@media print {
+    body { padding: 20px; }
+    input { border: 1px solid #999 !important; }
+}
+    </style>
+</head>
+<body>
+<div class="header-logo">
+    <img src="../../assets/highland-logo.png" alt="Highland Longevity Clinic">
+</div>
+
+<h1>KPI Tracker</h1>
+<p class="subtitle">Highland Longevity Clinic | Weekly Performance Metrics</p>
+
+<div class="callout">
+    <strong>How to Use:</strong> Track key metrics weekly. Compare against targets. Discuss trends in team meetings. Update your Position Contract metrics based on actual data.
+</div>
+
+<h2>Tracking Period</h2>
+<table>
+    <tr>
+        <td style="width: 20%;"><strong>Month:</strong></td>
+        <td><input type="text" placeholder="e.g., February 2025"></td>
+        <td style="width: 20%;"><strong>Tracked By:</strong></td>
+        <td><input type="text" placeholder="Your name"></td>
+    </tr>
+</table>
+
+<h2>Weekly Metrics Tracker</h2>
+
+<h3>Patient Experience Metrics</h3>
+<table>
+    <tr>
+        <th style="width: 25%;">Metric</th>
+        <th>Target</th>
+        <th>Week 1</th>
+        <th>Week 2</th>
+        <th>Week 3</th>
+        <th>Week 4</th>
+        <th>Monthly Avg</th>
+    </tr>
+    <tr>
+        <td><strong>Patient Satisfaction Score</strong></td>
+        <td>4.5/5</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Check-in Wait Time (min)</strong></td>
+        <td>&lt;5 min</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Google Review Rating</strong></td>
+        <td>4.8+</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>New Reviews This Week</strong></td>
+        <td>2+</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+</table>
+
+<h3>Operational Metrics</h3>
+<table>
+    <tr>
+        <th style="width: 25%;">Metric</th>
+        <th>Target</th>
+        <th>Week 1</th>
+        <th>Week 2</th>
+        <th>Week 3</th>
+        <th>Week 4</th>
+        <th>Monthly Avg</th>
+    </tr>
+    <tr>
+        <td><strong>Appointments Scheduled</strong></td>
+        <td>--</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>No-Show Rate (%)</strong></td>
+        <td>&lt;10%</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Same-Day Cancellations</strong></td>
+        <td>&lt;5%</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Patient Retention Rate</strong></td>
+        <td>80%+</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+</table>
+
+<h3>Clinical Metrics</h3>
+<table>
+    <tr>
+        <th style="width: 25%;">Metric</th>
+        <th>Target</th>
+        <th>Week 1</th>
+        <th>Week 2</th>
+        <th>Week 3</th>
+        <th>Week 4</th>
+        <th>Monthly Avg</th>
+    </tr>
+    <tr>
+        <td><strong>Protocol Compliance (%)</strong></td>
+        <td>100%</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Chart Completion Rate</strong></td>
+        <td>100%</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><strong>Adverse Events</strong></td>
+        <td>0</td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+</table>
+
+<h3>Custom Metrics (By Role)</h3>
+<table>
+    <tr>
+        <th style="width: 25%;">Metric (Define)</th>
+        <th>Target</th>
+        <th>Week 1</th>
+        <th>Week 2</th>
+        <th>Week 3</th>
+        <th>Week 4</th>
+        <th>Monthly Avg</th>
+    </tr>
+    <tr>
+        <td><input type="text" placeholder="Your metric"></td>
+        <td><input type="text" placeholder="Target"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><input type="text" placeholder="Your metric"></td>
+        <td><input type="text" placeholder="Target"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+    <tr>
+        <td><input type="text" placeholder="Your metric"></td>
+        <td><input type="text" placeholder="Target"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+        <td><input type="text" placeholder="--"></td>
+    </tr>
+</table>
+
+<h2>Role-Specific KPI Suggestions</h2>
+
+<div class="metric-card">
+    <div class="metric-header">
+        <span class="metric-title">Practice Manager (Jacqui)</span>
+    </div>
+    <ul>
+        <li>Patient retention rate (target: 80%+)</li>
+        <li>Google review rating maintenance (target: 4.8+)</li>
+        <li>Weekly operational report completion</li>
+        <li>Team schedule conflicts resolved</li>
+    </ul>
+</div>
+
+<div class="metric-card">
+    <div class="metric-header">
+        <span class="metric-title">Lead Clinician (Divya)</span>
+    </div>
+    <ul>
+        <li>Protocol adherence rate (target: 100%)</li>
+        <li>Chart quality score</li>
+        <li>Provider coverage gaps filled</li>
+        <li>Clinical training sessions completed</li>
+    </ul>
+</div>
+
+<div class="metric-card">
+    <div class="metric-header">
+        <span class="metric-title">Nurse / Aesthetics (Aubrey)</span>
+    </div>
+    <ul>
+        <li>Treatment satisfaction score (target: 4.5/5)</li>
+        <li>Procedure documentation accuracy</li>
+        <li>Supply inventory accuracy</li>
+        <li>Hydrafacial/peel procedures completed</li>
+    </ul>
+</div>
+
+<div class="metric-card">
+    <div class="metric-header">
+        <span class="metric-title">Front Desk (Dorothy)</span>
+    </div>
+    <ul>
+        <li>Check-in time (target: &lt;5 min)</li>
+        <li>Phone answer rate within 3 rings</li>
+        <li>Appointment confirmation rate (48hr advance)</li>
+        <li>Patient greeting satisfaction</li>
+    </ul>
+</div>
+
+<h2>Monthly Summary</h2>
+<table>
+    <tr>
+        <td style="width: 25%;"><strong>Month:</strong></td>
+        <td><input type="text" placeholder=""></td>
+        <td style="width: 25%;"><strong>Overall Assessment:</strong></td>
+        <td><input type="text" placeholder="On Track / Needs Attention / Behind"></td>
+    </tr>
+</table>
+
+<h3>Key Wins This Month</h3>
+<textarea style="width: 100%; min-height: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="What went well? What metrics improved?"></textarea>
+
+<h3>Areas for Improvement</h3>
+<textarea style="width: 100%; min-height: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="What needs attention? What will you focus on next month?"></textarea>
+
+<h3>Action Items for Next Month</h3>
+<textarea style="width: 100%; min-height: 80px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Specific actions to improve metrics..."></textarea>
+
+<div class="footer">
+    <p><strong>Highland Longevity Clinic</strong> | KPI Tracker Template</p>
+    <p>E-Myth Implementation | Weekly Performance Tracking</p>
+</div>
+</body>
+</html>

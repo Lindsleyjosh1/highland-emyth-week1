@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Org Chart Template | Highland Longevity Clinic</title>
+    <style>
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.header-logo {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #2E6BA6;
+}
+
+.header-logo img {
+    max-width: 180px;
+    height: auto;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: 600;
+    color: #2E6BA6;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 12pt;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 16pt;
+    font-weight: 600;
+    color: #1A4A73;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #E8F1F8;
+    padding-bottom: 8px;
+}
+
+h3 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #2E6BA6;
+    margin-top: 20px;
+}
+
+.callout {
+    background-color: #E8F1F8;
+    border-left: 4px solid #2E6BA6;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.instructions {
+    background: #fff8e6;
+    border-left: 4px solid #f5a623;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Org Chart Styles */
+.org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.level {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.level-label {
+    width: 100%;
+    text-align: center;
+    font-size: 10pt;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.position-box {
+    background: #2E6BA6;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 140px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.position-box.management {
+    background: #1A4A73;
+}
+
+.position-box.execution {
+    background: #5A9BD4;
+}
+
+.position-title {
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.position-name {
+    font-size: 10pt;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.connector {
+    width: 2px;
+    height: 20px;
+    background: #2E6BA6;
+    margin: 0 auto;
+}
+
+.connector-horizontal {
+    width: 80%;
+    height: 2px;
+    background: #2E6BA6;
+    margin: 0 auto;
+}
+
+/* Blank Template Styles */
+.blank-chart {
+    border: 2px dashed #ccc;
+    padding: 40px;
+    background: #fafafa;
+    margin: 30px 0;
+}
+
+.blank-box {
+    background: white;
+    border: 2px solid #ddd;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 140px;
+    min-height: 50px;
+}
+
+.blank-box input {
+    border: none;
+    border-bottom: 1px solid #999;
+    background: transparent;
+    width: 100%;
+    text-align: center;
+    font-size: 11pt;
+    padding: 5px;
+}
+
+.blank-box input::placeholder {
+    color: #999;
+}
+
+.footer {
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 9pt;
+    color: #999;
+    text-align: center;
+}
+
+@media print {
+    body { padding: 20px; }
+    .no-print { display: none; }
+    .blank-box { page-break-inside: avoid; }
+}
+    </style>
+</head>
+<body>
+<div class="header-logo">
+    <img src="../../assets/highland-logo.png" alt="Highland Longevity Clinic">
+</div>
+
+<h1>Organization Chart</h1>
+<p class="subtitle">Highland Longevity Clinic | Day 4 Workshop Template</p>
+
+<div class="instructions no-print">
+    <strong>Day 4 Workshop Instructions:</strong>
+    <ol>
+        <li>Review the current Highland org chart below</li>
+        <li>Use the blank template (or whiteboard/sticky notes) to map your understanding</li>
+        <li>Discuss: What positions exist? Who fills them? What might be missing?</li>
+        <li>Remember: Chart POSITIONS, not people. One person can hold multiple positions.</li>
+    </ol>
+</div>
+
+<h2>Current Highland Org Chart</h2>
+<p>This shows Highland's current structure. Positions are organized by level:</p>
+
+<div class="org-chart">
+    <div class="level-label">Visionary Level (Strategic)</div>
+    <div class="level">
+        <div class="position-box">
+            <div class="position-title">CEO</div>
+            <div class="position-name">Dr. Lindsley</div>
+        </div>
+        <div class="position-box">
+            <div class="position-title">Medical Director</div>
+            <div class="position-name">Dr. Lindsley</div>
+        </div>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="level-label">Management Level (Tactical)</div>
+    <div class="level">
+        <div class="position-box management">
+            <div class="position-title">Practice Manager</div>
+            <div class="position-name">Jacqui</div>
+        </div>
+        <div class="position-box management">
+            <div class="position-title">Lead Clinician</div>
+            <div class="position-name">Divya</div>
+        </div>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="level-label">Execution Level (Technician)</div>
+    <div class="level">
+        <div class="position-box execution">
+            <div class="position-title">Provider</div>
+            <div class="position-name">Dr. L, Divya</div>
+        </div>
+        <div class="position-box execution">
+            <div class="position-title">Nurse / Aesthetics</div>
+            <div class="position-name">Aubrey</div>
+        </div>
+        <div class="position-box execution">
+            <div class="position-title">Front Desk</div>
+            <div class="position-name">Dorothy</div>
+        </div>
+        <div class="position-box execution">
+            <div class="position-title">Admin</div>
+            <div class="position-name">Jacqui*</div>
+        </div>
+    </div>
+</div>
+
+<div class="callout">
+    <strong>Key Insight:</strong> Notice how some people hold multiple positions:
+    <ul>
+        <li>Dr. Lindsley is both CEO and Medical Director (and Provider)</li>
+        <li>Jacqui is both Practice Manager and Admin</li>
+        <li>Divya is both Lead Clinician and Provider</li>
+    </ul>
+    This is normal for a growing clinic. As Highland expands, these positions may be split among different people.
+</div>
+
+<h2>E-Myth Org Chart Principles</h2>
+
+<h3>The Three Levels</h3>
+<table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+    <tr style="background: #2E6BA6; color: white;">
+        <th style="padding: 10px; text-align: left;">Level</th>
+        <th style="padding: 10px; text-align: left;">Focus</th>
+        <th style="padding: 10px; text-align: left;">Key Question</th>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Visionary</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Where are we going?</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"What if...?"</td>
+    </tr>
+    <tr style="background: #f9f9f9;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Management</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">How do we get there?</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"How do we make this work?"</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Execution</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Getting it done daily</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"What needs to happen today?"</td>
+    </tr>
+</table>
+
+<h3>Rules for Org Charts</h3>
+<ul>
+    <li><strong>Chart positions, not people</strong> - A position exists even if unfilled</li>
+    <li><strong>One person, multiple hats</strong> - Common in growing businesses</li>
+    <li><strong>Clear reporting lines</strong> - Everyone knows who to escalate to</li>
+    <li><strong>Positions enable growth</strong> - As Highland grows, positions can be filled by new team members</li>
+</ul>
+
+<h2>Blank Template</h2>
+<p>Use this template for the workshop. Fill in positions and names as discussed:</p>
+
+<div class="blank-chart">
+    <div class="org-chart">
+        <div class="level-label">Visionary Level</div>
+        <div class="level">
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="level-label">Management Level</div>
+        <div class="level">
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="level-label">Execution Level</div>
+        <div class="level">
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+            <div class="blank-box">
+                <input type="text" placeholder="Position Title">
+                <input type="text" placeholder="Name(s)">
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Workshop Discussion Questions</h2>
+<ol>
+    <li>Are there any positions missing from our current chart?</li>
+    <li>Which positions might we need as Highland grows?</li>
+    <li>Are reporting lines clear for everyone?</li>
+    <li>Where do decisions get stuck? (May indicate missing position)</li>
+    <li>What would change if we had 2x the patients?</li>
+</ol>
+
+<div class="footer">
+    <p><strong>Highland Longevity Clinic</strong> | Organization Chart Template</p>
+    <p>E-Myth Week 1 | Day 4 Workshop | February 2025</p>
+</div>
+</body>
+</html>

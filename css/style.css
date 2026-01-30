@@ -663,6 +663,27 @@ body {
     transform: scale(1.05);
 }
 
+.resource-link {
+    padding: 8px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    background: #e8f5e9;
+    border: 2px solid var(--success-green);
+    color: var(--success-green);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource-link:hover {
+    background: var(--success-green);
+    color: white;
+    transform: scale(1.05);
+}
+
 /* ==================== QUIZZES ==================== */
 .quiz-trigger {
     margin-top: 30px;
@@ -1170,4 +1191,139 @@ body {
     0%, 100% { transform: scale(1); }
     25% { transform: scale(1.05) rotate(-2deg); }
     75% { transform: scale(1.05) rotate(2deg); }
+}
+
+/* ==================== RESOURCES SECTION ==================== */
+.resources-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.resource-category {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.resource-category h3 {
+    color: var(--dark-blue);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light-blue);
+}
+
+.category-icon {
+    font-size: 1.4rem;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px;
+    background: var(--light-blue);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-blue);
+    background: var(--white);
+}
+
+.resource-card .resource-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.resource-card h4 {
+    color: var(--dark-blue);
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.resource-card p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.download-badge {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+.resource-card:hover .download-badge {
+    background: var(--dark-blue);
+}
+
+.presentation-card {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    text-align: left;
+    gap: 20px;
+    padding: 25px;
+}
+
+.presentation-card .resource-icon {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.presentation-card h4 {
+    font-size: 1.2rem;
+}
+
+.presentation-card p {
+    margin-bottom: 0;
+}
+
+.presentation-card .download-badge {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Mobile adjustments for resources */
+@media (max-width: 768px) {
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .presentation-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .presentation-card .download-badge {
+        position: static;
+        transform: none;
+        margin-top: 15px;
+    }
 }

@@ -24,14 +24,14 @@ const ROLE_CONTENT = {
                     'Complete your E/M/T self-assessment'
                 ]},
                 { title: 'Presentation Customization', tasks: [
-                    'Open E-Myth-Kickoff-Presentation.pptx',
+                    { text: 'Open E-Myth-Kickoff-Presentation.pptx', resource: 'resources/presentation/E-Myth-Kickoff-Presentation.pptx' },
                     'Update Slide 6 with your E/M/T percentages',
                     'Add Highland-specific examples to key slides',
                     'Practice the "Tale of Two Practices" story'
                 ]},
                 { title: 'Handoff & Materials', tasks: [
                     'Brief Jacqui on running rest of week (1:1s, workshop)',
-                    'Print all materials from Printables folder',
+                    { text: 'Print all materials from Printables folder', resource: 'resources/pdfs/TEAM-HANDOUT.pdf' },
                     'Organize materials into packets for team'
                 ]}
             ]
@@ -146,15 +146,15 @@ const ROLE_CONTENT = {
             sections: [
                 { title: '1:1 with Divya (25 min)', tasks: [
                     'Review her Position Contract draft beforehand',
-                    'Conduct 1:1 using the guide questions'
+                    { text: 'Conduct 1:1 using the guide questions', resource: 'resources/templates/1-1-Meeting-Notes-Template.docx' }
                 ]},
                 { title: '1:1 with Aubrey (25 min)', tasks: [
                     'Review her Position Contract draft beforehand',
-                    'Conduct 1:1 using the guide questions'
+                    { text: 'Conduct 1:1 using the guide questions', resource: 'resources/templates/1-1-Meeting-Notes-Template.docx' }
                 ]},
                 { title: '1:1 with Dorothy (25 min)', tasks: [
                     'Review her Position Contract draft beforehand',
-                    'Conduct 1:1 using the guide questions'
+                    { text: 'Conduct 1:1 using the guide questions', resource: 'resources/templates/1-1-Meeting-Notes-Template.docx' }
                 ]},
                 { title: 'End of Day', tasks: [
                     'Take notes on each conversation',
@@ -168,7 +168,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>You\'re facilitating!</strong> Lead the team through the org chart exercise.',
             sections: [
                 { title: 'Preparation', tasks: [
-                    'Review Org Chart Workshop guide',
+                    { text: 'Review Org Chart Workshop guide', resource: 'resources/templates/Org-Chart-Template.html' },
                     'Prepare whiteboard/materials'
                 ]},
                 { title: 'Run the Workshop (60 min)', tasks: [
@@ -242,7 +242,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Prepare for your 1:1 conversation with Jacqui.</strong>',
             sections: [
                 { title: 'Preparation', tasks: [
-                    'Review your draft Position Contract',
+                    { text: 'Review your draft Position Contract', resource: 'resources/templates/Position-Contract-Blank.html' },
                     'List your clinical responsibilities',
                     'Note any unclear expectations',
                     'Prepare questions for your 1:1',
@@ -261,7 +261,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Participate in the org chart workshop with the team.</strong>',
             sections: [
                 { title: 'Workshop Participation', tasks: [
-                    'Participate in workshop',
+                    { text: 'Participate in workshop', resource: 'resources/templates/Org-Chart-Template.html' },
                     'Identify your position on org chart',
                     'Discuss clinical handoffs',
                     'Note provider coverage needs',
@@ -325,7 +325,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Prepare for your 1:1 conversation with Jacqui.</strong>',
             sections: [
                 { title: 'Preparation', tasks: [
-                    'Review your draft Position Contract',
+                    { text: 'Review your draft Position Contract', resource: 'resources/templates/Position-Contract-Blank.html' },
                     'List your key procedures',
                     'Note any unclear expectations',
                     'Prepare questions for your 1:1',
@@ -344,7 +344,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Participate in the org chart workshop with the team.</strong>',
             sections: [
                 { title: 'Workshop Participation', tasks: [
-                    'Participate in workshop',
+                    { text: 'Participate in workshop', resource: 'resources/templates/Org-Chart-Template.html' },
                     'Identify your position on org chart',
                     'Discuss handoffs (scheduling, supplies, follow-up)',
                     'Note collaboration points',
@@ -409,7 +409,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Prepare for your 1:1 conversation with Jacqui.</strong>',
             sections: [
                 { title: 'Preparation', tasks: [
-                    'Review your draft Position Contract',
+                    { text: 'Review your draft Position Contract', resource: 'resources/templates/Position-Contract-Blank.html' },
                     'List your daily responsibilities',
                     'Note any unclear expectations',
                     'Prepare questions for your 1:1',
@@ -428,7 +428,7 @@ const ROLE_CONTENT = {
             infoBox: '<strong>Participate in the org chart workshop with the team.</strong>',
             sections: [
                 { title: 'Workshop Participation', tasks: [
-                    'Participate in workshop',
+                    { text: 'Participate in workshop', resource: 'resources/templates/Org-Chart-Template.html' },
                     'Identify front desk on org chart',
                     'Discuss patient flow handoffs',
                     'Clarify who handles what inquiries',
@@ -999,17 +999,23 @@ function renderDayContent(dayNum, dayData) {
                 const isObject = typeof task === 'object';
                 const taskText = isObject ? task.text : task;
                 const docKey = isObject ? task.doc : null;
+                const resourceLink = isObject ? task.resource : null;
 
-                if (docKey) {
+                if (docKey || resourceLink) {
                     html += `
                     <div class="check-item-wrapper">
                         <label class="check-item has-doc">
                             <input type="checkbox" data-task="${taskIndex}">
                             <span class="checkmark"></span>
                             <span class="check-text">${taskText}</span>
-                        </label>
-                        <button class="doc-link" onclick="viewDocument('${docKey}')" title="Click to open document">📄</button>
-                    </div>`;
+                        </label>`;
+                    if (docKey) {
+                        html += `<button class="doc-link" onclick="viewDocument('${docKey}')" title="Click to open document">📄</button>`;
+                    }
+                    if (resourceLink) {
+                        html += `<a href="${resourceLink}" class="resource-link" target="_blank" download title="Download resource">📥</a>`;
+                    }
+                    html += `</div>`;
                 } else {
                     html += `
                     <label class="check-item">
