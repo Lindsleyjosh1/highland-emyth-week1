@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Myth Week 1 | Highland Longevity Clinic</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- User Selection Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <img src="assets/highland-logo.png" alt="Highland Longevity Clinic" class="modal-logo">
+            <h2>Welcome to E-Myth Week 1!</h2>
+            <p>Select your name to track your progress</p>
+            <div class="user-buttons">
+                <button class="user-btn" data-user="lindsley">
+                    <span class="user-icon">👨‍⚕️</span>
+                    <span class="user-name">Dr. Lindsley</span>
+                    <span class="user-role">Owner</span>
+                </button>
+                <button class="user-btn" data-user="jacqui">
+                    <span class="user-icon">👩‍💼</span>
+                    <span class="user-name">Jacqui</span>
+                    <span class="user-role">Practice Manager</span>
+                </button>
+                <button class="user-btn" data-user="aubrey">
+                    <span class="user-icon">💆</span>
+                    <span class="user-name">Aubrey</span>
+                    <span class="user-role">Nurse / Aesthetics</span>
+                </button>
+                <button class="user-btn" data-user="divya">
+                    <span class="user-icon">👩‍⚕️</span>
+                    <span class="user-name">Divya</span>
+                    <span class="user-role">Lead Clinician</span>
+                </button>
+                <button class="user-btn" data-user="dorothy">
+                    <span class="user-icon">🏥</span>
+                    <span class="user-name">Dorothy</span>
+                    <span class="user-role">Front Desk</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="assets/highland-logo.png" alt="Highland" class="header-logo">
+                <div class="header-title">
+                    <h1>E-Myth Week 1</h1>
+                    <p>February 3-7, 2025</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="currentUserName">User</span>
+                    <button id="switchUser" class="btn-small">Switch</button>
+                </div>
+                <div class="progress-ring-container">
+                    <svg class="progress-ring" width="50" height="50">
+                        <circle class="progress-ring-bg" cx="25" cy="25" r="20"/>
+                        <circle id="progressCircle" class="progress-ring-circle" cx="25" cy="25" r="20"/>
+                    </svg>
+                    <span id="progressPercent" class="progress-percent">0%</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </button>
+            <button class="nav-tab" data-section="day1">
+                <span class="nav-icon">1️⃣</span>
+                <span class="nav-label">Day 1</span>
+                <span class="day-status" id="day1Status"></span>
+            </button>
+            <button class="nav-tab" data-section="day2">
+                <span class="nav-icon">2️⃣</span>
+                <span class="nav-label">Day 2</span>
+                <span class="day-status" id="day2Status"></span>
+            </button>
+            <button class="nav-tab" data-section="day3">
+                <span class="nav-icon">3️⃣</span>
+                <span class="nav-label">Day 3</span>
+                <span class="day-status" id="day3Status"></span>
+            </button>
+            <button class="nav-tab" data-section="day4">
+                <span class="nav-icon">4️⃣</span>
+                <span class="nav-label">Day 4</span>
+                <span class="day-status" id="day4Status"></span>
+            </button>
+            <button class="nav-tab" data-section="day5">
+                <span class="nav-icon">5️⃣</span>
+                <span class="nav-label">Day 5</span>
+                <span class="day-status" id="day5Status"></span>
+            </button>
+            <button class="nav-tab" data-section="reference">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Reference</span>
+            </button>
+            <button class="nav-tab" data-section="badges">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label">Badges</span>
+                <span class="badge-count" id="badgeCount">0</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2>Welcome, <span id="dashboardUserName">Team Member</span>!</h2>
+                    <p class="subtitle">Your E-Myth Week 1 Progress</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Overall Progress Card -->
+                    <div class="card progress-card">
+                        <h3>Overall Progress</h3>
+                        <div class="big-progress">
+                            <svg class="big-progress-ring" width="120" height="120">
+                                <circle class="progress-ring-bg" cx="60" cy="60" r="50"/>
+                                <circle id="bigProgressCircle" class="progress-ring-circle" cx="60" cy="60" r="50"/>
+                            </svg>
+                            <span id="bigProgressPercent" class="big-progress-percent">0%</span>
+                        </div>
+                        <p id="progressMessage">Let's get started!</p>
+                    </div>
+
+                    <!-- Day Progress Cards -->
+                    <div class="card day-summary-card">
+                        <h3>This Week</h3>
+                        <div class="day-progress-list">
+                            <div class="day-progress-item" data-day="1">
+                                <span class="day-label">Day 1 - Mon</span>
+                                <div class="mini-progress-bar">
+                                    <div class="mini-progress-fill" id="day1Progress"></div>
+                                </div>
+                                <span class="day-percent" id="day1Percent">0%</span>
+                            </div>
+                            <div class="day-progress-item" data-day="2">
+                                <span class="day-label">Day 2 - Tue</span>
+                                <div class="mini-progress-bar">
+                                    <div class="mini-progress-fill" id="day2Progress"></div>
+                                </div>
+                                <span class="day-percent" id="day2Percent">0%</span>
+                            </div>
+                            <div class="day-progress-item" data-day="3">
+                                <span class="day-label">Day 3 - Wed</span>
+                                <div class="mini-progress-bar">
+                                    <div class="mini-progress-fill" id="day3Progress"></div>
+                                </div>
+                                <span class="day-percent" id="day3Percent">0%</span>
+                            </div>
+                            <div class="day-progress-item" data-day="4">
+                                <span class="day-label">Day 4 - Thu</span>
+                                <div class="mini-progress-bar">
+                                    <div class="mini-progress-fill" id="day4Progress"></div>
+                                </div>
+                                <span class="day-percent" id="day4Percent">0%</span>
+                            </div>
+                            <div class="day-progress-item" data-day="5">
+                                <span class="day-label">Day 5 - Fri</span>
+                                <div class="mini-progress-bar">
+                                    <div class="mini-progress-fill" id="day5Progress"></div>
+                                </div>
+                                <span class="day-percent" id="day5Percent">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Badges -->
+                    <div class="card badges-preview-card">
+                        <h3>Your Badges</h3>
+                        <div id="recentBadges" class="recent-badges">
+                            <p class="empty-state">Complete tasks to earn badges!</p>
+                        </div>
+                        <button class="btn-link" data-section="badges">View All Badges →</button>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card actions-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" id="continueBtn">
+                                <span class="action-icon">▶️</span>
+                                <span>Continue Learning</span>
+                            </button>
+                            <button class="action-btn" data-section="reference">
+                                <span class="action-icon">📖</span>
+                                <span>Read Reference</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day 1 Section -->
+            <section id="day1" class="section">
+                <div class="section-header">
+                    <h2>Day 1: Monday, Feb 3</h2>
+                    <p class="subtitle" id="day1Subtitle">Preparation</p>
+                    <div class="day-progress-bar">
+                        <div class="day-progress-fill" id="day1ProgressBar"></div>
+                    </div>
+                </div>
+                <div class="content-area" id="day1Content">
+                    <!-- Dynamic content loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Day 2 Section -->
+            <section id="day2" class="section">
+                <div class="section-header">
+                    <h2>Day 2: Tuesday, Feb 4</h2>
+                    <p class="subtitle" id="day2Subtitle">Kickoff Meeting</p>
+                    <div class="day-progress-bar">
+                        <div class="day-progress-fill" id="day2ProgressBar"></div>
+                    </div>
+                </div>
+                <div class="content-area" id="day2Content">
+                    <!-- Dynamic content loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Day 3 Section -->
+            <section id="day3" class="section">
+                <div class="section-header">
+                    <h2>Day 3: Wednesday, Feb 5</h2>
+                    <p class="subtitle" id="day3Subtitle">1:1 Conversations</p>
+                    <div class="day-progress-bar">
+                        <div class="day-progress-fill" id="day3ProgressBar"></div>
+                    </div>
+                </div>
+                <div class="content-area" id="day3Content">
+                    <!-- Dynamic content loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Day 4 Section -->
+            <section id="day4" class="section">
+                <div class="section-header">
+                    <h2>Day 4: Thursday, Feb 6</h2>
+                    <p class="subtitle" id="day4Subtitle">Org Chart Workshop</p>
+                    <div class="day-progress-bar">
+                        <div class="day-progress-fill" id="day4ProgressBar"></div>
+                    </div>
+                </div>
+                <div class="content-area" id="day4Content">
+                    <!-- Dynamic content loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Day 5 Section -->
+            <section id="day5" class="section">
+                <div class="section-header">
+                    <h2>Day 5: Friday, Feb 7</h2>
+                    <p class="subtitle" id="day5Subtitle">Week 1 Wrap-Up</p>
+                    <div class="day-progress-bar">
+                        <div class="day-progress-fill" id="day5ProgressBar"></div>
+                    </div>
+                </div>
+                <div class="content-area" id="day5Content">
+                    <!-- Dynamic content loaded by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Reference Section -->
+            <section id="reference" class="section">
+                <div class="section-header">
+                    <h2>Reference Materials</h2>
+                    <p class="subtitle">Read the documents and test your knowledge with quizzes</p>
+                </div>
+
+                <div class="reference-grid">
+                    <div class="reference-card" id="refPrinciples">
+                        <div class="ref-icon">📖</div>
+                        <h3>E-Myth Principles</h3>
+                        <p>The core concepts of E-Myth thinking</p>
+                        <div class="ref-status" id="principlesStatus"></div>
+                        <div class="ref-buttons">
+                            <button class="btn-primary" onclick="viewDocument('principles')">📄 Read Document</button>
+                            <button class="btn-secondary" onclick="startDocQuiz('principles')">🧠 Take Quiz</button>
+                        </div>
+                    </div>
+                    <div class="reference-card" id="refVMV">
+                        <div class="ref-icon">🎯</div>
+                        <h3>Vision, Mission & Values</h3>
+                        <p>Highland's foundation and core values</p>
+                        <div class="ref-status" id="vmvStatus"></div>
+                        <div class="ref-buttons">
+                            <button class="btn-primary" onclick="viewDocument('vmv')">📄 Read Document</button>
+                            <button class="btn-secondary" onclick="startDocQuiz('vmv')">💎 Take Quiz</button>
+                        </div>
+                    </div>
+                    <div class="reference-card" id="refContracts">
+                        <div class="ref-icon">📋</div>
+                        <h3>Position Contracts</h3>
+                        <p>Roles, responsibilities, and metrics</p>
+                        <div class="ref-status" id="contractsStatus"></div>
+                        <div class="ref-buttons">
+                            <button class="btn-primary" onclick="viewDocument('contracts')">📄 Read Document</button>
+                            <button class="btn-secondary" onclick="startDocQuiz('contracts')">📊 Take Quiz</button>
+                        </div>
+                    </div>
+                    <div class="reference-card" id="refGuide">
+                        <div class="ref-icon">📚</div>
+                        <h3>Week 1 Complete Guide</h3>
+                        <p>Full implementation guide with all details</p>
+                        <div class="ref-status" id="guideStatus"></div>
+                        <div class="ref-buttons">
+                            <button class="btn-primary" onclick="viewDocument('guide')">📄 Read Document</button>
+                            <button class="btn-secondary" onclick="startDocQuiz('guide')">⭐ Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Legacy Reference Modal (for inline content) -->
+                <div id="referenceModal" class="modal hidden">
+                    <div class="modal-content large">
+                        <button class="modal-close" onclick="closeReference()">&times;</button>
+                        <div id="referenceContent"></div>
+                        <div class="modal-footer">
+                            <button class="btn-primary" onclick="markReferenceRead()">Mark as Read ✓</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Badges Section -->
+            <section id="badges" class="section">
+                <div class="section-header">
+                    <h2>Your Achievements</h2>
+                    <p class="subtitle">Earn badges by completing tasks and quizzes</p>
+                </div>
+
+                <div class="badges-grid">
+                    <div class="badge-card" data-badge="first_step">
+                        <div class="badge-icon locked">👣</div>
+                        <h4>First Step</h4>
+                        <p>Complete your first task</p>
+                    </div>
+                    <div class="badge-card" data-badge="day1_champion">
+                        <div class="badge-icon locked">🏆</div>
+                        <h4>Day 1 Champion</h4>
+                        <p>Complete all Day 1 tasks</p>
+                    </div>
+                    <div class="badge-card" data-badge="day2_champion">
+                        <div class="badge-icon locked">🎯</div>
+                        <h4>Day 2 Champion</h4>
+                        <p>Complete all Day 2 tasks</p>
+                    </div>
+                    <div class="badge-card" data-badge="day3_champion">
+                        <div class="badge-icon locked">🤝</div>
+                        <h4>Day 3 Champion</h4>
+                        <p>Complete all Day 3 tasks</p>
+                    </div>
+                    <div class="badge-card" data-badge="day4_champion">
+                        <div class="badge-icon locked">📊</div>
+                        <h4>Day 4 Champion</h4>
+                        <p>Complete all Day 4 tasks</p>
+                    </div>
+                    <div class="badge-card" data-badge="day5_champion">
+                        <div class="badge-icon locked">🎉</div>
+                        <h4>Day 5 Champion</h4>
+                        <p>Complete all Day 5 tasks</p>
+                    </div>
+                    <div class="badge-card" data-badge="quiz_master">
+                        <div class="badge-icon locked">🧠</div>
+                        <h4>Quiz Master</h4>
+                        <p>Score 100% on any quiz</p>
+                    </div>
+                    <div class="badge-card" data-badge="document_scholar">
+                        <div class="badge-icon locked">📖</div>
+                        <h4>Document Scholar</h4>
+                        <p>Perfect score on all document quizzes</p>
+                    </div>
+                    <div class="badge-card" data-badge="triple_crown">
+                        <div class="badge-icon locked">👑</div>
+                        <h4>Triple Crown</h4>
+                        <p>Perfect score on all day quizzes</p>
+                    </div>
+                    <div class="badge-card" data-badge="explorer">
+                        <div class="badge-icon locked">📚</div>
+                        <h4>E-Myth Explorer</h4>
+                        <p>Read all 4 documents</p>
+                    </div>
+                    <div class="badge-card" data-badge="week1_warrior">
+                        <div class="badge-icon locked">⭐</div>
+                        <h4>Week 1 Warrior</h4>
+                        <p>Complete entire Week 1</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Document Viewer Modal (outside sections so it can overlay any view) -->
+        <div id="documentModal" class="modal hidden">
+            <div class="modal-content document-modal">
+                <div class="document-header">
+                    <h2 id="documentTitle">Document</h2>
+                    <button class="modal-close" onclick="closeDocument()">&times;</button>
+                </div>
+                <iframe id="documentFrame" class="document-frame"></iframe>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeDocument()">Close</button>
+                    <button class="btn-primary" onclick="markDocumentRead()">✓ Mark as Read</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div id="quizModal" class="modal hidden">
+            <div class="modal-content quiz-modal">
+                <div class="quiz-header">
+                    <h2 id="quizTitle">Quiz</h2>
+                    <p id="quizSubtitle"></p>
+                </div>
+                <div id="quizContent" class="quiz-content"></div>
+                <div class="quiz-footer">
+                    <button id="quizSubmit" class="btn-primary hidden">Submit Answers</button>
+                    <button id="quizClose" class="btn-secondary hidden" onclick="closeQuiz()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Badge Earned Popup -->
+        <div id="badgePopup" class="badge-popup hidden">
+            <div class="badge-popup-content">
+                <div class="badge-popup-icon" id="earnedBadgeIcon"></div>
+                <h3>Badge Earned!</h3>
+                <p id="earnedBadgeName"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
